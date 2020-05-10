@@ -7,6 +7,7 @@ import com.fyb.production.common.Const;
 import com.fyb.production.dto.UserParam;
 import com.fyb.production.entity.User;
 import com.fyb.production.service.IUserService;
+import com.fyb.production.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,8 @@ public class UserController {
     @PostMapping("/login")
     public CommonResult<User> login(@RequestBody UserParam userParam, HttpSession session){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username",userParam.getUsername()).eq("password",userParam.getPassword());
+        queryWrapper.eq("username",userParam.getUsername()).eq("password",
+                MD5Util.encode(userParam.getPassword()));
         User userInfo = userService.getOne(queryWrapper);
         if(userInfo!=null){
             session.setAttribute(Const.CURRENT_USER,userInfo);
@@ -48,6 +50,5 @@ public class UserController {
         CommonResult<User> failed = CommonResult.failed();
         return failed;
     }
-
 
 }
