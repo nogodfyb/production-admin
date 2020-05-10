@@ -5,27 +5,6 @@
 # * 'gtrp' and 'gtr' create a GET request with or without query parameters;
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
-
-###查询所有用户信息
-GET http://localhost:8082/production/user/users
+GET http://localhost:8082//production/menu/list
 Accept: application/json
-
-###登录用户
-POST http://localhost:8082/production/user/login
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin"
-}
-
-###添加用户
-POST http://localhost:8082/production/user/add
-Content-Type: application/json
-
-{
-  "username": "test",
-  "password": "test"
-}
-
 ###

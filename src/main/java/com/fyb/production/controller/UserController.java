@@ -43,6 +43,7 @@ public class UserController {
                 MD5Util.encode(userParam.getPassword()));
         User userInfo = userService.getOne(queryWrapper);
         if(userInfo!=null){
+            userInfo.setPassword(null);
             session.setAttribute(Const.CURRENT_USER,userInfo);
             CommonResult<User> success = CommonResult.success(userInfo);
             return success;
@@ -50,5 +51,18 @@ public class UserController {
         CommonResult<User> failed = CommonResult.failed();
         return failed;
     }
+
+    @PostMapping("/add")
+    public CommonResult<User> addUser(@RequestBody User user ){
+        user.setPassword(MD5Util.encode(user.getPassword()));
+        boolean save = userService.save(user);
+        if (save){
+            return  CommonResult.success(user.setPassword(null));
+        }else {
+            return CommonResult.failed();
+        }
+    }
+
+
 
 }
