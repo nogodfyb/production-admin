@@ -2,8 +2,11 @@ package com.fyb.production.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fyb.production.common.CommonPage;
 import com.fyb.production.common.CommonResult;
 import com.fyb.production.common.Const;
+import com.fyb.production.dto.UserPageParam;
 import com.fyb.production.dto.UserParam;
 import com.fyb.production.entity.User;
 import com.fyb.production.service.IUserService;
@@ -12,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * <p>
@@ -29,10 +32,15 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    //分页查询
     @GetMapping("/users")
-    public CommonResult<List<User>> queryAllUsers(){
-        List<User> userList = userService.list();
-        CommonResult<List<User>> success = CommonResult.success(userList);
+    public CommonResult<CommonPage<User>> queryAllUsers(@Valid UserPageParam userPageParam){
+        Page<User> userPage = new Page<>();
+        userPage.setSize(userPageParam.getPageSize());
+        userPage.setCurrent(userPageParam.getPageNum());
+        Page<User> pageResult = userService.page(userPage);
+        CommonPage<User> userCommonPage = CommonPage.restPage(pageResult);
+        CommonResult<CommonPage<User>> success = CommonResult.success(userCommonPage);
         return success;
     }
 
