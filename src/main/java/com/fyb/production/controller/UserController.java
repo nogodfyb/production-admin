@@ -45,6 +45,25 @@ public class UserController {
         CommonResult<CommonPage<UserVo>> success = CommonResult.success(userCommonPage);
         return success;
     }
+    //根据id查询用户信息
+    @GetMapping("/users/{userId}")
+    public  CommonResult<User> queryUserById(@PathVariable Integer userId){
+        User user = userService.getById(userId);
+        if(user!=null){
+            user.setPassword(null);
+            return CommonResult.success(user);
+        }
+        return CommonResult.failed();
+    }
+    //根据id修改用户信息
+    @PutMapping("/users")
+    public  CommonResult<User> updateUserById(@RequestBody User user){
+        boolean update = userService.updateById(user);
+        if(update){
+           return CommonResult.success(null);
+        }
+        return CommonResult.failed();
+    }
 
     //登录
     @PostMapping("/login")
