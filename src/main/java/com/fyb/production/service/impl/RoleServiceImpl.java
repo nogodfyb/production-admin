@@ -46,7 +46,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
              ) {
             QueryWrapper<RoleRights> queryWrapper = new QueryWrapper<>();
             queryWrapper.select("rights_id");
-            queryWrapper.eq("role_id",role.getId());
+            queryWrapper.eq("role_id",role.getRoleId());
             List<Object> roleIdList = roleRightsMapper.selectObjs(queryWrapper);
             List<Integer> idList = (List<Integer>) (List<?>) roleIdList;
             if(idList.size()!=0){

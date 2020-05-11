@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,20 @@ public class RightsController {
         }
         return CommonResult.failed();
     }
+    //树状形式查出所有权限
+    @GetMapping("/tree")
+    public CommonResult<List<Rights>> queryAllRightsTree(){
+        QueryWrapper<Rights> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id");
+        queryWrapper.orderByAsc("level");
+        List<Object> objectList = rightsService.listObjs(queryWrapper);
+        List<Integer> idList = (List<Integer>) (List<?>) objectList;
+        if(idList.size()!=0){
+            ArrayList<Rights> treeList = rightsService.getAllRightsTree(idList);
+            return CommonResult.success(treeList);
+        }
+        return CommonResult.failed();
+    }
+
 
 }
