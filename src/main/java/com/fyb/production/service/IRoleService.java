@@ -1,7 +1,10 @@
 package com.fyb.production.service;
 
+import com.fyb.production.common.CommonResult;
 import com.fyb.production.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRoleService extends IService<Role> {
 
+    CommonResult<List<Role>> getAllRolesTree();
 }

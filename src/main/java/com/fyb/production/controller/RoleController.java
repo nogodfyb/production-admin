@@ -2,15 +2,11 @@ package com.fyb.production.controller;
 
 
 import com.fyb.production.common.CommonResult;
-import com.fyb.production.entity.Role;
 import com.fyb.production.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * <p>
@@ -30,9 +26,7 @@ public class RoleController {
     // 获取所有角色并附带权限tree
     @GetMapping("/roles")
     public CommonResult getAllRoles(){
-        List<Role> list = roleService.list();
-
-        return CommonResult.success(list);
+      return  roleService.getAllRolesTree();
     }
 
 
