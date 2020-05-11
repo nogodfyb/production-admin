@@ -1,7 +1,10 @@
 package com.fyb.production.service;
 
-import com.fyb.production.entity.User;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fyb.production.entity.User;
+import com.fyb.production.vo.UserVo;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+
+    IPage<UserVo> pageQueryAllUsers(Page<UserVo> userPage, String query);
 }

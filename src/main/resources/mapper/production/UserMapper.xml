@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fyb.production.mapper.UserMapper">
 
+<select id="selectPageVo" resultType="com.fyb.production.vo.UserVo">
+SELECT
+	`user`.id,
+	`user`.username,
+	`user`.email,
+	`user`.mobile,
+	`user`.is_alive,
+	role.role_name
+FROM
+	`user`,
+	role
+WHERE
+	`user`.role_id = role.id
+and `user`.username LIKE CONCAT('%',#{query},'%')
+</select>
 </mapper>

@@ -1,7 +1,10 @@
 package com.fyb.production.mapper;
 
-import com.fyb.production.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fyb.production.entity.User;
+import com.fyb.production.vo.UserVo;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-05-09
  */
 public interface UserMapper extends BaseMapper<User> {
+
+    IPage<UserVo> selectPageVo(Page<UserVo> page, String query);
 
 }
