@@ -86,6 +86,7 @@ public class UserController {
     @PostMapping("/add")
     public CommonResult<User> addUser(@RequestBody User user ){
         user.setPassword(MD5Util.encode(user.getPassword()));
+        user.setRoleId(3);
         boolean save = userService.save(user);
         if (save){
             return  CommonResult.success(user.setPassword(null));
