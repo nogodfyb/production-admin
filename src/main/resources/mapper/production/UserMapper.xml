@@ -11,10 +11,8 @@ SELECT
 	`user`.is_alive,
 	role.role_name
 FROM
-	`user`,
-	role
-WHERE
-	`user`.role_id = role.id
-and `user`.username LIKE CONCAT('%',#{query},'%')
+	`user`
+LEFT JOIN role ON `user`.role_id = role.id
+AND `user`.username LIKE CONCAT('%', #{query}, '%')
 </select>
 </mapper>

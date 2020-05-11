@@ -46,6 +46,7 @@ public class UserController {
         return success;
     }
 
+    //登录
     @PostMapping("/login")
     public CommonResult<User> login(@RequestBody UserParam userParam, HttpSession session){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -62,6 +63,7 @@ public class UserController {
         return failed;
     }
 
+    //添加用户
     @PostMapping("/add")
     public CommonResult<User> addUser(@RequestBody User user ){
         user.setPassword(MD5Util.encode(user.getPassword()));
@@ -71,6 +73,19 @@ public class UserController {
         }else {
             return CommonResult.failed();
         }
+    }
+
+    //更新状态
+    @PutMapping("/{userId}/state/{state}")
+    public CommonResult<User> updateUserState(@PathVariable Integer userId, @PathVariable Boolean state){
+        User user = new User();
+        user.setId(userId);
+        user.setIsAlive(state);
+        boolean update = userService.updateById(user);
+        if (update){
+            return CommonResult.success(null);
+        }
+        return CommonResult.failed();
     }
 
 }
