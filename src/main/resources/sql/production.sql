@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-11 22:05:51
+Date: 2020-05-12 15:12:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,24 +20,52 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `machine`;
 CREATE TABLE `machine` (
-  `code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '机台编码',
-  `type` int(10) DEFAULT NULL COMMENT '机台类型',
-  `description` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '机台类型的描述'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `code` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '机台编码',
+  `type` int(3) DEFAULT NULL COMMENT '机台类型',
+  `description` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '机台类型的描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of machine
 -- ----------------------------
-INSERT INTO `machine` VALUES ('111', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('112', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('113', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('114', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('115', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('116', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('117', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('118', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('119', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('120', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('1', 'A01', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('2', 'A02', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('3', 'A03', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('4', 'A04', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('5', 'A05', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6', 'A06', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('7', 'A07', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('8', 'A08', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('9', 'A09', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('10', 'A10', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('11', 'A11', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('12', 'A12', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('13', 'A13', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('14', 'A14', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('15', 'A15', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('16', 'A16', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('17', 'A17', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('18', 'A18', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('19', 'B01', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('20', 'B02', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('21', 'B03', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('22', 'B04', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('23', 'B05', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('24', 'B06', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('25', 'B07', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('26', 'B08', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('27', 'B09', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('28', 'B10', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('29', 'B11', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('30', 'B12', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('31', 'B13', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('32', 'B14', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('33', 'B15', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('34', 'B16', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('35', 'B17', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('36', 'B18', '1', '液压硫化机');
 
 -- ----------------------------
 -- Table structure for menu
@@ -50,7 +78,7 @@ CREATE TABLE `menu` (
   `path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of menu
@@ -63,6 +91,7 @@ INSERT INTO `menu` VALUES ('5', '0', '数据统计', '', '5');
 INSERT INTO `menu` VALUES ('6', '1', '用户列表', 'users', '6');
 INSERT INTO `menu` VALUES ('7', '2', '角色列表', 'roles', '8');
 INSERT INTO `menu` VALUES ('8', '2', '权限列表', 'rights', '9');
+INSERT INTO `menu` VALUES ('9', '3', '机台列表', 'machines', '10');
 
 -- ----------------------------
 -- Table structure for order
