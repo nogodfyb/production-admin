@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-12 15:12:29
+Date: 2020-05-12 17:29:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,47 +25,47 @@ CREATE TABLE `machine` (
   `type` int(3) DEFAULT NULL COMMENT '机台类型',
   `description` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '机台类型的描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6037 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of machine
 -- ----------------------------
-INSERT INTO `machine` VALUES ('1', 'A01', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('2', 'A02', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('3', 'A03', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('4', 'A04', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('5', 'A05', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('6', 'A06', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('7', 'A07', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('8', 'A08', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('9', 'A09', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('10', 'A10', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('11', 'A11', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('12', 'A12', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('13', 'A13', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('14', 'A14', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('15', 'A15', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('16', 'A16', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('17', 'A17', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('18', 'A18', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('19', 'B01', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('20', 'B02', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('21', 'B03', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('22', 'B04', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('23', 'B05', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('24', 'B06', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('25', 'B07', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('26', 'B08', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('27', 'B09', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('28', 'B10', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('29', 'B11', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('30', 'B12', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('31', 'B13', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('32', 'B14', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('33', 'B15', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('34', 'B16', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('35', 'B17', '1', '液压硫化机');
-INSERT INTO `machine` VALUES ('36', 'B18', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6001', 'A01', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6002', 'A02', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6003', 'A03', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6004', 'A04', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6005', 'A05', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6006', 'A06', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6007', 'A07', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6008', 'A08', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6009', 'A09', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6010', 'A10', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6011', 'A11', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6012', 'A12', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6013', 'A13', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6014', 'A14', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6015', 'A15', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6016', 'A16', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6017', 'A17', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6018', 'A18', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6019', 'A19', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6020', 'A20', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6021', 'A21', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6022', 'A22', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6023', 'A23', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6024', 'A24', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6025', 'A25', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6026', 'A26', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6027', 'A27', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6028', 'A28', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6029', 'A29', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6030', 'A30', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6031', 'A31', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6032', 'A32', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6033', 'A33', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6034', 'A34', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6035', 'A35', '1', '液压硫化机');
+INSERT INTO `machine` VALUES ('6036', 'A36', '1', '液压硫化机');
 
 -- ----------------------------
 -- Table structure for menu
@@ -78,20 +78,21 @@ CREATE TABLE `menu` (
   `path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES ('1', '0', '用户管理', '', '1');
 INSERT INTO `menu` VALUES ('2', '0', '权限管理', '', '2');
-INSERT INTO `menu` VALUES ('3', '0', '机台管理', '', '3');
+INSERT INTO `menu` VALUES ('3', '0', '机台与产品', '', '3');
 INSERT INTO `menu` VALUES ('4', '0', '订单管理', '', '4');
 INSERT INTO `menu` VALUES ('5', '0', '数据统计', '', '5');
 INSERT INTO `menu` VALUES ('6', '1', '用户列表', 'users', '6');
 INSERT INTO `menu` VALUES ('7', '2', '角色列表', 'roles', '8');
 INSERT INTO `menu` VALUES ('8', '2', '权限列表', 'rights', '9');
 INSERT INTO `menu` VALUES ('9', '3', '机台列表', 'machines', '10');
+INSERT INTO `menu` VALUES ('10', '3', '产品列表', 'products', '11');
 
 -- ----------------------------
 -- Table structure for order
@@ -118,16 +119,36 @@ CREATE TABLE `order` (
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '产品名称',
   `code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '产品代码',
-  `unit_price` int(10) DEFAULT NULL COMMENT '单价'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `unit_price` decimal(6,2) DEFAULT NULL COMMENT '价格，单位/元',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('子午胎', '111', '200');
-INSERT INTO `product` VALUES ('半钢胎', '112', '220');
+INSERT INTO `product` VALUES ('1', '天府RD-109', '1001', '205.00');
+INSERT INTO `product` VALUES ('2', '天府RD-110A', '1002', '210.00');
+INSERT INTO `product` VALUES ('3', '天府RD-123', '1003', '215.00');
+INSERT INTO `product` VALUES ('4', '天府RD-209', '1004', '220.00');
+INSERT INTO `product` VALUES ('5', '天府RD-224', '1005', '225.00');
+INSERT INTO `product` VALUES ('6', '攀达 RD-106', '1006', '230.00');
+INSERT INTO `product` VALUES ('7', '攀达 RD-119', '1007', '235.00');
+INSERT INTO `product` VALUES ('8', '全钢系列CP265', '1008', '240.00');
+INSERT INTO `product` VALUES ('9', '全钢系列CP267', '1009', '245.00');
+INSERT INTO `product` VALUES ('10', 'SR965银路全钢', '1010', '250.00');
+INSERT INTO `product` VALUES ('11', '天府RD-007A', '1011', '255.00');
+INSERT INTO `product` VALUES ('12', '全钢轮胎-HD968', '1012', '260.00');
+INSERT INTO `product` VALUES ('13', 'SR266银路全钢', '1013', '265.00');
+INSERT INTO `product` VALUES ('14', 'SR166银路全钢', '1014', '270.00');
+INSERT INTO `product` VALUES ('15', '工程轮胎EMT502', '1015', '275.00');
+INSERT INTO `product` VALUES ('16', '工程轮胎EMT168', '1016', '280.00');
+INSERT INTO `product` VALUES ('17', '天府HT606', '1017', '285.00');
+INSERT INTO `product` VALUES ('18', '天府MTT-688', '1018', '290.00');
+INSERT INTO `product` VALUES ('19', '天府MTT-839', '1019', '295.00');
+INSERT INTO `product` VALUES ('20', '金天府HT808', '1020', '300.00');
 
 -- ----------------------------
 -- Table structure for production_plan
@@ -152,24 +173,26 @@ CREATE TABLE `production_plan` (
 -- ----------------------------
 DROP TABLE IF EXISTS `productivity`;
 CREATE TABLE `productivity` (
-  `machine_code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '机台代码',
-  `product_code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '产品代码',
-  `daily_production` int(10) DEFAULT NULL COMMENT '日产量'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `machine_code` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '机台代码',
+  `product_code` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '产品代码',
+  `daily_production` int(10) DEFAULT NULL COMMENT '日产量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of productivity
 -- ----------------------------
-INSERT INTO `productivity` VALUES ('111', '123', '120');
-INSERT INTO `productivity` VALUES ('112', '123', '122');
-INSERT INTO `productivity` VALUES ('113', '123', '124');
-INSERT INTO `productivity` VALUES ('114', '123', '126');
-INSERT INTO `productivity` VALUES ('115', '123', '128');
-INSERT INTO `productivity` VALUES ('116', '123', '130');
-INSERT INTO `productivity` VALUES ('117', '123', '132');
-INSERT INTO `productivity` VALUES ('118', '123', '134');
-INSERT INTO `productivity` VALUES ('119', '123', '136');
-INSERT INTO `productivity` VALUES ('120', '123', '138');
+INSERT INTO `productivity` VALUES ('1', '111', '123', '120');
+INSERT INTO `productivity` VALUES ('2', '112', '123', '122');
+INSERT INTO `productivity` VALUES ('3', '113', '123', '124');
+INSERT INTO `productivity` VALUES ('4', '114', '123', '126');
+INSERT INTO `productivity` VALUES ('5', '115', '123', '128');
+INSERT INTO `productivity` VALUES ('6', '116', '123', '130');
+INSERT INTO `productivity` VALUES ('7', '117', '123', '132');
+INSERT INTO `productivity` VALUES ('8', '118', '123', '134');
+INSERT INTO `productivity` VALUES ('9', '119', '123', '136');
+INSERT INTO `productivity` VALUES ('10', '120', '123', '138');
 
 -- ----------------------------
 -- Table structure for rights
