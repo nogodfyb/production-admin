@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-12 17:29:45
+Date: 2020-05-12 18:41:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `menu` (
   `path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of menu
@@ -86,13 +86,14 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` VALUES ('1', '0', '用户管理', '', '1');
 INSERT INTO `menu` VALUES ('2', '0', '权限管理', '', '2');
 INSERT INTO `menu` VALUES ('3', '0', '机台与产品', '', '3');
-INSERT INTO `menu` VALUES ('4', '0', '订单管理', '', '4');
+INSERT INTO `menu` VALUES ('4', '0', '订单与生产计划', '', '4');
 INSERT INTO `menu` VALUES ('5', '0', '数据统计', '', '5');
 INSERT INTO `menu` VALUES ('6', '1', '用户列表', 'users', '6');
 INSERT INTO `menu` VALUES ('7', '2', '角色列表', 'roles', '8');
 INSERT INTO `menu` VALUES ('8', '2', '权限列表', 'rights', '9');
 INSERT INTO `menu` VALUES ('9', '3', '机台列表', 'machines', '10');
 INSERT INTO `menu` VALUES ('10', '3', '产品列表', 'products', '11');
+INSERT INTO `menu` VALUES ('11', '3', '机台产能', 'productivitys', '12');
 
 -- ----------------------------
 -- Table structure for order
@@ -173,26 +174,124 @@ CREATE TABLE `production_plan` (
 -- ----------------------------
 DROP TABLE IF EXISTS `productivity`;
 CREATE TABLE `productivity` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `machine_code` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '机台代码',
   `product_code` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '产品代码',
   `daily_production` int(10) DEFAULT NULL COMMENT '日产量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of productivity
 -- ----------------------------
-INSERT INTO `productivity` VALUES ('1', '111', '123', '120');
-INSERT INTO `productivity` VALUES ('2', '112', '123', '122');
-INSERT INTO `productivity` VALUES ('3', '113', '123', '124');
-INSERT INTO `productivity` VALUES ('4', '114', '123', '126');
-INSERT INTO `productivity` VALUES ('5', '115', '123', '128');
-INSERT INTO `productivity` VALUES ('6', '116', '123', '130');
-INSERT INTO `productivity` VALUES ('7', '117', '123', '132');
-INSERT INTO `productivity` VALUES ('8', '118', '123', '134');
-INSERT INTO `productivity` VALUES ('9', '119', '123', '136');
-INSERT INTO `productivity` VALUES ('10', '120', '123', '138');
+INSERT INTO `productivity` VALUES ('1', 'A01', '1001', '161');
+INSERT INTO `productivity` VALUES ('2', 'A02', '1001', '162');
+INSERT INTO `productivity` VALUES ('3', 'A03', '1001', '163');
+INSERT INTO `productivity` VALUES ('4', 'A04', '1001', '164');
+INSERT INTO `productivity` VALUES ('5', 'A05', '1001', '165');
+INSERT INTO `productivity` VALUES ('6', 'A06', '1001', '166');
+INSERT INTO `productivity` VALUES ('7', 'A07', '1001', '167');
+INSERT INTO `productivity` VALUES ('8', 'A08', '1001', '168');
+INSERT INTO `productivity` VALUES ('9', 'A09', '1001', '169');
+INSERT INTO `productivity` VALUES ('10', 'A10', '1001', '170');
+INSERT INTO `productivity` VALUES ('11', 'A11', '1001', '171');
+INSERT INTO `productivity` VALUES ('12', 'A12', '1001', '172');
+INSERT INTO `productivity` VALUES ('13', 'A13', '1001', '173');
+INSERT INTO `productivity` VALUES ('14', 'A14', '1001', '174');
+INSERT INTO `productivity` VALUES ('15', 'A15', '1001', '175');
+INSERT INTO `productivity` VALUES ('16', 'A16', '1001', '176');
+INSERT INTO `productivity` VALUES ('17', 'A17', '1001', '177');
+INSERT INTO `productivity` VALUES ('18', 'A18', '1001', '178');
+INSERT INTO `productivity` VALUES ('19', 'A19', '1001', '179');
+INSERT INTO `productivity` VALUES ('20', 'A20', '1001', '180');
+INSERT INTO `productivity` VALUES ('21', 'A21', '1001', '181');
+INSERT INTO `productivity` VALUES ('22', 'A22', '1001', '182');
+INSERT INTO `productivity` VALUES ('23', 'A23', '1001', '183');
+INSERT INTO `productivity` VALUES ('24', 'A24', '1001', '184');
+INSERT INTO `productivity` VALUES ('25', 'A25', '1001', '185');
+INSERT INTO `productivity` VALUES ('26', 'A26', '1001', '186');
+INSERT INTO `productivity` VALUES ('27', 'A27', '1001', '187');
+INSERT INTO `productivity` VALUES ('28', 'A28', '1001', '188');
+INSERT INTO `productivity` VALUES ('29', 'A29', '1001', '189');
+INSERT INTO `productivity` VALUES ('30', 'A30', '1001', '190');
+INSERT INTO `productivity` VALUES ('31', 'A31', '1001', '191');
+INSERT INTO `productivity` VALUES ('32', 'A32', '1001', '192');
+INSERT INTO `productivity` VALUES ('33', 'A33', '1001', '193');
+INSERT INTO `productivity` VALUES ('34', 'A34', '1001', '194');
+INSERT INTO `productivity` VALUES ('35', 'A35', '1001', '195');
+INSERT INTO `productivity` VALUES ('36', 'A36', '1001', '196');
+INSERT INTO `productivity` VALUES ('37', 'A01', '1002', '165');
+INSERT INTO `productivity` VALUES ('38', 'A02', '1002', '166');
+INSERT INTO `productivity` VALUES ('39', 'A03', '1002', '167');
+INSERT INTO `productivity` VALUES ('40', 'A04', '1002', '168');
+INSERT INTO `productivity` VALUES ('41', 'A05', '1002', '169');
+INSERT INTO `productivity` VALUES ('42', 'A06', '1002', '170');
+INSERT INTO `productivity` VALUES ('43', 'A07', '1002', '171');
+INSERT INTO `productivity` VALUES ('44', 'A08', '1002', '172');
+INSERT INTO `productivity` VALUES ('45', 'A09', '1002', '173');
+INSERT INTO `productivity` VALUES ('46', 'A10', '1002', '174');
+INSERT INTO `productivity` VALUES ('47', 'A11', '1002', '175');
+INSERT INTO `productivity` VALUES ('48', 'A12', '1002', '176');
+INSERT INTO `productivity` VALUES ('49', 'A13', '1002', '177');
+INSERT INTO `productivity` VALUES ('50', 'A14', '1002', '178');
+INSERT INTO `productivity` VALUES ('51', 'A15', '1002', '179');
+INSERT INTO `productivity` VALUES ('52', 'A16', '1002', '180');
+INSERT INTO `productivity` VALUES ('53', 'A17', '1002', '181');
+INSERT INTO `productivity` VALUES ('54', 'A18', '1002', '182');
+INSERT INTO `productivity` VALUES ('55', 'A19', '1002', '183');
+INSERT INTO `productivity` VALUES ('56', 'A20', '1002', '184');
+INSERT INTO `productivity` VALUES ('57', 'A21', '1002', '185');
+INSERT INTO `productivity` VALUES ('58', 'A22', '1002', '186');
+INSERT INTO `productivity` VALUES ('59', 'A23', '1002', '187');
+INSERT INTO `productivity` VALUES ('60', 'A24', '1002', '188');
+INSERT INTO `productivity` VALUES ('61', 'A25', '1002', '189');
+INSERT INTO `productivity` VALUES ('62', 'A26', '1002', '190');
+INSERT INTO `productivity` VALUES ('63', 'A27', '1002', '191');
+INSERT INTO `productivity` VALUES ('64', 'A28', '1002', '192');
+INSERT INTO `productivity` VALUES ('65', 'A29', '1002', '193');
+INSERT INTO `productivity` VALUES ('66', 'A30', '1002', '194');
+INSERT INTO `productivity` VALUES ('67', 'A31', '1002', '195');
+INSERT INTO `productivity` VALUES ('68', 'A32', '1002', '196');
+INSERT INTO `productivity` VALUES ('69', 'A33', '1002', '197');
+INSERT INTO `productivity` VALUES ('70', 'A34', '1002', '198');
+INSERT INTO `productivity` VALUES ('71', 'A35', '1002', '199');
+INSERT INTO `productivity` VALUES ('72', 'A36', '1002', '200');
+INSERT INTO `productivity` VALUES ('73', 'A01', '1003', '163');
+INSERT INTO `productivity` VALUES ('74', 'A02', '1003', '164');
+INSERT INTO `productivity` VALUES ('75', 'A03', '1003', '165');
+INSERT INTO `productivity` VALUES ('76', 'A04', '1003', '166');
+INSERT INTO `productivity` VALUES ('77', 'A05', '1003', '167');
+INSERT INTO `productivity` VALUES ('78', 'A06', '1003', '168');
+INSERT INTO `productivity` VALUES ('79', 'A07', '1003', '169');
+INSERT INTO `productivity` VALUES ('80', 'A08', '1003', '170');
+INSERT INTO `productivity` VALUES ('81', 'A09', '1003', '171');
+INSERT INTO `productivity` VALUES ('82', 'A10', '1003', '172');
+INSERT INTO `productivity` VALUES ('83', 'A11', '1003', '173');
+INSERT INTO `productivity` VALUES ('84', 'A12', '1003', '174');
+INSERT INTO `productivity` VALUES ('85', 'A13', '1003', '175');
+INSERT INTO `productivity` VALUES ('86', 'A14', '1003', '176');
+INSERT INTO `productivity` VALUES ('87', 'A15', '1003', '177');
+INSERT INTO `productivity` VALUES ('88', 'A16', '1003', '178');
+INSERT INTO `productivity` VALUES ('89', 'A17', '1003', '179');
+INSERT INTO `productivity` VALUES ('90', 'A18', '1003', '180');
+INSERT INTO `productivity` VALUES ('91', 'A19', '1003', '181');
+INSERT INTO `productivity` VALUES ('92', 'A20', '1003', '182');
+INSERT INTO `productivity` VALUES ('93', 'A21', '1003', '183');
+INSERT INTO `productivity` VALUES ('94', 'A22', '1003', '184');
+INSERT INTO `productivity` VALUES ('95', 'A23', '1003', '185');
+INSERT INTO `productivity` VALUES ('96', 'A24', '1003', '186');
+INSERT INTO `productivity` VALUES ('97', 'A25', '1003', '187');
+INSERT INTO `productivity` VALUES ('98', 'A26', '1003', '188');
+INSERT INTO `productivity` VALUES ('99', 'A27', '1003', '189');
+INSERT INTO `productivity` VALUES ('100', 'A28', '1003', '190');
+INSERT INTO `productivity` VALUES ('101', 'A29', '1003', '191');
+INSERT INTO `productivity` VALUES ('102', 'A30', '1003', '192');
+INSERT INTO `productivity` VALUES ('103', 'A31', '1003', '193');
+INSERT INTO `productivity` VALUES ('104', 'A32', '1003', '194');
+INSERT INTO `productivity` VALUES ('105', 'A33', '1003', '195');
+INSERT INTO `productivity` VALUES ('106', 'A34', '1003', '196');
+INSERT INTO `productivity` VALUES ('107', 'A35', '1003', '197');
+INSERT INTO `productivity` VALUES ('108', 'A36', '1003', '198');
 
 -- ----------------------------
 -- Table structure for rights
