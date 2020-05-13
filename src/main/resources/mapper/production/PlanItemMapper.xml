@@ -2,4 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fyb.production.mapper.PlanItemMapper">
 
+    <select id="selectAll" resultType="com.fyb.production.vo.PlanItemVo">
+    SELECT
+        plan_item.id,
+        plan_item.plan_no,
+        product.`name`,
+        plan_item.product_quantity,
+        plan_item.start_time
+    FROM
+        plan_item,
+        product
+    WHERE
+        product. CODE = plan_item.product_id
+    </select>
 </mapper>

@@ -1,7 +1,10 @@
 package com.fyb.production.mapper;
 
-import com.fyb.production.entity.PlanItem;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.fyb.production.entity.PlanItem;
+import com.fyb.production.vo.PlanItemVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-05-13
  */
 public interface PlanItemMapper extends BaseMapper<PlanItem> {
+
+    List<PlanItemVo> selectAll();
 
 }

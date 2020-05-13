@@ -2,6 +2,9 @@ package com.fyb.production.service;
 
 import com.fyb.production.entity.PlanItem;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fyb.production.vo.PlanItemVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPlanItemService extends IService<PlanItem> {
 
+    List<PlanItemVo> selectAllPlanItemsVo();
 }

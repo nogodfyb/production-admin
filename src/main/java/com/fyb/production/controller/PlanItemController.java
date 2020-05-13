@@ -4,14 +4,12 @@ package com.fyb.production.controller;
 import com.fyb.production.common.CommonResult;
 import com.fyb.production.entity.PlanItem;
 import com.fyb.production.service.IPlanItemService;
+import com.fyb.production.vo.PlanItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * <p>
@@ -36,6 +34,16 @@ public class PlanItemController {
             return CommonResult.success(null);
         }
         return CommonResult.failed();
+    }
+
+    //查询所有
+    @GetMapping("/list")
+    public CommonResult<List<PlanItemVo>> selectList(){
+        List<PlanItemVo> planItemVos = planItemService.selectAllPlanItemsVo();
+        if(planItemVos.size()==0){
+            return CommonResult.failed();
+        }
+        return CommonResult.success(planItemVos);
     }
 
 
