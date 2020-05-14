@@ -3,16 +3,19 @@
 <mapper namespace="com.fyb.production.mapper.PlanItemMapper">
 
     <select id="selectAll" resultType="com.fyb.production.vo.PlanItemVo">
-    SELECT
-        plan_item.id,
-        plan_item.plan_no,
-        product.`name`,
-        plan_item.product_quantity,
-        plan_item.start_time
-    FROM
-        plan_item,
-        product
-    WHERE
-        product. CODE = plan_item.product_id
+SELECT
+	plan_item.id,
+	plan_item.plan_no,
+	product.`name`,
+	plan_item.product_quantity,
+	plan_item.start_time
+FROM
+	plan_item,
+	product
+WHERE
+	product. CODE = plan_item.product_id
+AND plan_item.is_plan = 0
+ORDER BY
+	plan_item.id
     </select>
 </mapper>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-05-12 18:41:56
+Date: 2020-05-14 09:13:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `menu` (
   `path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of menu
@@ -86,7 +86,7 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` VALUES ('1', '0', '用户管理', '', '1');
 INSERT INTO `menu` VALUES ('2', '0', '权限管理', '', '2');
 INSERT INTO `menu` VALUES ('3', '0', '机台与产品', '', '3');
-INSERT INTO `menu` VALUES ('4', '0', '订单与生产计划', '', '4');
+INSERT INTO `menu` VALUES ('4', '0', '生产计划安排', '', '4');
 INSERT INTO `menu` VALUES ('5', '0', '数据统计', '', '5');
 INSERT INTO `menu` VALUES ('6', '1', '用户列表', 'users', '6');
 INSERT INTO `menu` VALUES ('7', '2', '角色列表', 'roles', '8');
@@ -94,6 +94,7 @@ INSERT INTO `menu` VALUES ('8', '2', '权限列表', 'rights', '9');
 INSERT INTO `menu` VALUES ('9', '3', '机台列表', 'machines', '10');
 INSERT INTO `menu` VALUES ('10', '3', '产品列表', 'products', '11');
 INSERT INTO `menu` VALUES ('11', '3', '机台产能', 'productivitys', '12');
+INSERT INTO `menu` VALUES ('12', '4', '计划批次', 'plans', '13');
 
 -- ----------------------------
 -- Table structure for order
@@ -114,6 +115,26 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for plan_item
+-- ----------------------------
+DROP TABLE IF EXISTS `plan_item`;
+CREATE TABLE `plan_item` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `plan_no` int(11) DEFAULT NULL COMMENT '计划批次号',
+  `product_id` smallint(6) DEFAULT NULL COMMENT '产品id',
+  `product_quantity` int(8) DEFAULT NULL COMMENT '产品数量',
+  `is_plan` tinyint(1) unsigned DEFAULT NULL COMMENT '是否已安排，1是，0否',
+  `start_time` date DEFAULT NULL COMMENT '起始时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of plan_item
+-- ----------------------------
+INSERT INTO `plan_item` VALUES ('16', '202005', '1002', '20000', '0', '2020-05-14');
+INSERT INTO `plan_item` VALUES ('17', '202006', '1002', '30000', '0', '2020-05-14');
 
 -- ----------------------------
 -- Table structure for product
@@ -305,7 +326,7 @@ CREATE TABLE `rights` (
   `method` varchar(32) NOT NULL DEFAULT '' COMMENT '操作方法',
   `level` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '权限等级',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 -- ----------------------------
 -- Records of rights

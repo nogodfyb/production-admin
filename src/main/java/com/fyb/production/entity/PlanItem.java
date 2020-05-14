@@ -55,5 +55,5 @@ public class PlanItem implements Serializable {
     @NotNull(message = "startTime不能为空")
     private LocalDate startTime;
 
-
+    private Boolean isPlan;
 }

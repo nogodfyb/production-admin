@@ -29,6 +29,7 @@ public class PlanItemController {
     //添加计划
     @PostMapping("/add")
     public CommonResult<PlanItem> addPlan(@RequestBody @Valid PlanItem planItem){
+        planItem.setIsPlan(false);
         boolean save = planItemService.save(planItem);
         if(save){
             return CommonResult.success(null);
@@ -44,6 +45,12 @@ public class PlanItemController {
             return CommonResult.failed();
         }
         return CommonResult.success(planItemVos);
+    }
+
+    //接受生产计划idList
+    @PostMapping("/generateProductionPlans")
+    public void test (@RequestBody List<Integer> idList){
+        System.out.println(idList);
     }
 
 
