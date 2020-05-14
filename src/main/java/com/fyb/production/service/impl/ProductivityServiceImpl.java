@@ -3,8 +3,10 @@ package com.fyb.production.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fyb.production.common.CommonResult;
+import com.fyb.production.entity.PlanItemRecord;
 import com.fyb.production.entity.Productivity;
 import com.fyb.production.mapper.ProductivityMapper;
+import com.fyb.production.service.IPlanItemRecordService;
 import com.fyb.production.service.IProductivityService;
 import com.fyb.production.vo.ProductivityVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ import java.util.Map;
 public class ProductivityServiceImpl extends ServiceImpl<ProductivityMapper, Productivity> implements IProductivityService {
     @Autowired
     private ProductivityMapper productivityMapper;
+
+    @Autowired
+    private IPlanItemRecordService planItemRecordService;
 
     @Override
     public CommonResult<List<ProductivityVo>> queryAllProductivityVo(){
@@ -59,10 +64,12 @@ public class ProductivityServiceImpl extends ServiceImpl<ProductivityMapper, Pro
         int wholeDays = productQuantity / total.intValue();
         //还剩需要安排多少产量productQuantity-total*wholeDays
         int remainProduction=productQuantity-total.intValue()*wholeDays;
-        System.out.println("可以排的整天数:"+wholeDays);
-        System.out.println("剩余产量:"+remainProduction);
-
-
+        //插入预排生产计划记录表
+        PlanItemRecord planItemRecord = new PlanItemRecord();
+        planItemRecord.setPlanItemId(planItemId);
+        planItemRecord.setWholeDays(wholeDays);
+        planItemRecord.setRemainProduction(remainProduction);
+        planItemRecordService.save(planItemRecord);
     }
 
 
