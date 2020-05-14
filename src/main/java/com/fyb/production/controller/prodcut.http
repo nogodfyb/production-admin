@@ -8,4 +8,9 @@
 GET http://localhost:8082/production/productivity/list
 Accept: application/json
 
+###根据产能分配机台生产计划
+POST http://localhost:8082/production/plan-item/generateProductionPlans
+Content-Type: application/json
+
+[16,17]
 ###

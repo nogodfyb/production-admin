@@ -49,8 +49,9 @@ public class PlanItemController {
 
     //接受生产计划idList
     @PostMapping("/generateProductionPlans")
-    public void test (@RequestBody List<Integer> idList){
-        System.out.println(idList);
+    public CommonResult generateProductionPlans (@RequestBody List<Integer> idList)  {
+        planItemService.generateProductionPlans(idList);
+        return CommonResult.success(null);
     }
 
 

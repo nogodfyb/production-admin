@@ -17,4 +17,6 @@ import java.util.List;
 public interface IPlanItemService extends IService<PlanItem> {
 
     List<PlanItemVo> selectAllPlanItemsVo();
+
+    void generateProductionPlans(List<Integer> planIdList);
 }

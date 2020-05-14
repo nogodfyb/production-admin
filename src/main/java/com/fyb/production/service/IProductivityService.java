@@ -18,4 +18,6 @@ import java.util.List;
 public interface IProductivityService extends IService<Productivity> {
 
     CommonResult<List<ProductivityVo>> queryAllProductivityVo();
+
+    void generateProductionPlansByProductivity(Integer planItemId, Integer productCode, Integer productQuantity);
 }
