@@ -1,6 +1,6 @@
 package com.fyb.production.mapper;
 
-import com.fyb.production.entity.PlanItemRecord;
+import com.fyb.production.entity.MachinePlan;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author fyb
  * @since 2020-05-14
  */
-public interface PlanItemRecordMapper extends BaseMapper<PlanItemRecord> {
+public interface MachinePlanMapper extends BaseMapper<MachinePlan> {
 
 }

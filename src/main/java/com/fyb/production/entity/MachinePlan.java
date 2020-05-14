@@ -1,6 +1,7 @@
 package com.fyb.production.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -18,7 +19,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class PlanItemRecord implements Serializable {
+public class MachinePlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,19 +30,26 @@ public class PlanItemRecord implements Serializable {
     private Integer id;
 
     /**
-     * plan_item的逻辑外键
+     * 计划批次号
      */
-    private Integer planItemId;
+    private Integer planNo;
 
     /**
-     * 可以排生产计划的整天数
+     * 生产日期
      */
-    private Integer wholeDays;
+    private LocalDate productionDate;
+
+    private String shift;
 
     /**
-     * 安排完了整天后还需要的安排的剩余产量
+     * 计划产量
      */
-    private Integer remainProduction;
+    private Integer scheduledProduction;
+
+    /**
+     * 产品代码
+     */
+    private String productCode;
 
 
 }

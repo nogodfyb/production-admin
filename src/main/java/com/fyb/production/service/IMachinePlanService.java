@@ -1,6 +1,6 @@
 package com.fyb.production.service;
 
-import com.fyb.production.entity.PlanItemRecord;
+import com.fyb.production.entity.MachinePlan;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author fyb
  * @since 2020-05-14
  */
-public interface IPlanItemRecordService extends IService<PlanItemRecord> {
+public interface IMachinePlanService extends IService<MachinePlan> {
 
 }

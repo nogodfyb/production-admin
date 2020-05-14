@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-05-14
  */
 @RestController
-@RequestMapping("/production/plan-item-record")
-public class PlanItemRecordController {
+@RequestMapping("/production/machine-plan")
+public class MachinePlanController {
 
 }
