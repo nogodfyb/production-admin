@@ -16,4 +16,6 @@ import java.time.LocalDate;
 public interface MachinePlanMapper extends BaseMapper<MachinePlan> {
     Boolean isFull(LocalDate productionDate);
 
+    MachinePlan selectUnFull(LocalDate productionDate);
+
 }

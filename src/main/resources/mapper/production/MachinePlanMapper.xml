@@ -27,4 +27,18 @@
 			)
 	)
     </select>
+	<select id="selectUnFull" resultType="com.fyb.production.entity.MachinePlan">
+		SELECT
+	machine_plan.*
+FROM
+	machine_plan,
+	productivity
+WHERE
+	machine_plan.machine_code = productivity.machine_code
+AND machine_plan.product_code = productivity.product_code
+AND machine_plan.production_date = #{productionDate}
+AND (
+	machine_plan.scheduled_production = productivity.daily_production / 3
+) = 0
+	</select>
 </mapper>

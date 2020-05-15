@@ -128,5 +128,10 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
         }
     }
 
+    //当天安排了生产计划，但是没排满，补足了未排满的那个机台之后，按排这之后剩余的产量
+    public void generateMachinePlan(){
+
+    }
+
 
 }

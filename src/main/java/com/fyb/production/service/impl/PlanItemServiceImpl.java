@@ -2,6 +2,7 @@ package com.fyb.production.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fyb.production.common.Const;
 import com.fyb.production.entity.MachinePlan;
 import com.fyb.production.entity.PlanItem;
 import com.fyb.production.entity.Productivity;
@@ -109,7 +110,45 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
                 }
                 //如果没排满
                 else {
+                    //查出是哪个机台没排满
+                    MachinePlan machinePlan = machinePlanMapper.selectUnFull(localDate);
+                    //查询出当前需要安排生产的产品对应该机台的产能
+                    QueryWrapper<Productivity> queryWrapper2 = new QueryWrapper<>();
+                    queryWrapper2.eq("machine_code",machinePlan.getMachineCode()).
+                            eq("product_code",item.getProductCode());
+                    Productivity productivity  = productivityService.getOne(queryWrapper2);
+                    //当前机台还能排多少产量
+                    Integer currentProduction=productivity.getDailyProduction()/3-machinePlan.getScheduledProduction();
+                    machinePlan.setId(null);
+                    machinePlan.setPlanNo(item.getPlanNo());
+                    machinePlan.setScheduledProduction(currentProduction);
+                    machinePlan.setProductCode(item.getProductCode());
+                    //安排
+                    machinePlanMapper.insert(machinePlan);
+                    Integer remain=item.getProductQuantity()-currentProduction;
+                    //再将当天剩余排满
+                    QueryWrapper<MachinePlan> machinePlanQueryWrapper1 = new QueryWrapper<>();
+                    machinePlanQueryWrapper1.eq("machine_code",machinePlan.getMachineCode()).
+                            eq("production_date",machinePlan.getProductionDate());
+                    List<MachinePlan> list = machinePlanService.list(machinePlanQueryWrapper1);
 
+                    //还需要排中班，夜班
+                    if(list.size()==2){
+                        machinePlan.setShift(Const.Shift.ZHONG);
+                        machinePlan.setScheduledProduction(productivity.getDailyProduction()/3);
+                        machinePlanMapper.insert(machinePlan);
+                        remain=remain-productivity.getDailyProduction()/3;
+                        machinePlan.setShift(Const.Shift.YE);
+                        machinePlanMapper.insert(machinePlan);
+                        remain=remain-productivity.getDailyProduction()/3;
+                    }
+                    //还需要排夜班
+                    if(list.size()==3){
+                        machinePlan.setShift(Const.Shift.YE);
+                        machinePlan.setScheduledProduction(productivity.getDailyProduction()/3);
+                        machinePlanMapper.insert(machinePlan);
+                        remain=remain-productivity.getDailyProduction()/3;
+                    }
                 }
 
 
