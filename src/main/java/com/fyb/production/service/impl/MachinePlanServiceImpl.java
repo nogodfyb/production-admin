@@ -6,11 +6,13 @@ import com.fyb.production.common.Const;
 import com.fyb.production.entity.MachinePlan;
 import com.fyb.production.entity.Productivity;
 import com.fyb.production.mapper.MachinePlanMapper;
+import com.fyb.production.mapper.ProductivityMapper;
 import com.fyb.production.service.IMachinePlanService;
 import com.fyb.production.service.IProductivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,6 +34,9 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
 
     @Autowired
     private IProductivityService productivityService;
+
+    @Autowired
+    private ProductivityMapper productivityMapper;
 
     //排满整天的生产计划
     @Override
@@ -129,7 +134,54 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
     }
 
     //当天安排了生产计划，但是没排满，补足了未排满的那个机台之后，按排这之后剩余的产量
-    public void generateMachinePlan(){
+    @Override
+    public void generateMachinePlanIfNotFull(Integer planNo, LocalDate productionDate, String productCode, Integer remain){
+        //查询当天哪些机台没有安排生产
+        List<Productivity> productivities = productivityMapper.queryRemainMachines(productCode, productionDate);
+        //遍历当天剩余机台安排
+        for (Productivity item:productivities
+             ) {
+            //得到该机台的对应产品的日产量
+            Integer dailyProduction = item.getDailyProduction();
+            //算出每班产量
+            Integer shiftProduction = dailyProduction/3;
+            //得到该机台的机台编码
+            String machineCode = item.getMachineCode();
+            MachinePlan machinePlan = new MachinePlan();
+            machinePlan.setPlanNo(planNo);
+            machinePlan.setProductionDate(productionDate);
+            machinePlan.setShift(Const.Shift.BAI);
+            machinePlan.setScheduledProduction(shiftProduction);
+            machinePlan.setProductCode(productCode);
+            machinePlan.setMachineCode(machineCode);
+            //插入白班生产计划
+            machinePlanMapper.insert(machinePlan);
+            remain=remain-shiftProduction;
+            //插入中班生产计划
+            machinePlan.setShift(Const.Shift.ZHONG);
+            machinePlanMapper.insert(machinePlan);
+            remain=remain-shiftProduction;
+            //插入夜班生产计划
+            machinePlan.setShift(Const.Shift.YE);
+            machinePlanMapper.insert(machinePlan);
+            remain=remain-shiftProduction;
+        }
+        //当天已补齐，应该新起一天开始排
+        LocalDate newProductionDate = productionDate.plusDays(1);
+        QueryWrapper<Productivity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("sum(daily_production) as total").eq("product_code",productCode);
+        Map<String, Object> map = productivityService.getMap(queryWrapper);
+        //单个产品36台机器一天的产能
+        BigDecimal total = (BigDecimal) map.get("total");
+        //可以将如下个整天排满
+        int wholeDays = remain / total.intValue();
+        for (int i = 0; i <wholeDays ; i++) {
+            generateMachinePlanWholeDay(planNo,newProductionDate.plusDays(i),productCode);
+        }
+        //还剩需要安排多少产量productQuantity-total*wholeDays 这些产量可以在一天排完
+        int remainProduction=remain-total.intValue()*wholeDays;
+        //剩余产量排满
+        generateMachinePlanRemainAfterWholeDays(planNo,productCode,remainProduction);
 
     }
 

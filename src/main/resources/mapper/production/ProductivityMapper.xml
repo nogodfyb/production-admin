@@ -19,4 +19,20 @@ AND productivity.product_code = product.`code`
 ORDER BY
 	productivity.id
     </select>
+	<select id="queryRemainMachines" resultType="com.fyb.production.entity.Productivity">
+		SELECT
+	*
+FROM
+	productivity
+WHERE
+	product_code = #{productCode}
+AND machine_code NOT IN (
+	SELECT DISTINCT
+		machine_code
+	FROM
+		machine_plan
+	WHERE
+		production_date = #{productionDate}
+)
+	</select>
 </mapper>

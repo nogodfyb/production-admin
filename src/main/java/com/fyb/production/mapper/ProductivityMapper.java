@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fyb.production.entity.Productivity;
 import com.fyb.production.vo.ProductivityVo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,5 +18,7 @@ import java.util.List;
 public interface ProductivityMapper extends BaseMapper<Productivity> {
 
     List<ProductivityVo> queryAllProductivityVo();
+
+    List<Productivity> queryRemainMachines(String productCode, LocalDate productionDate);
 
 }

@@ -149,6 +149,8 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
                         machinePlanMapper.insert(machinePlan);
                         remain=remain-productivity.getDailyProduction()/3;
                     }
+                    //安排remain产量
+                    machinePlanService.generateMachinePlanIfNotFull(item.getPlanNo(),localDate,item.getProductCode(),remain);
                 }
 
 
