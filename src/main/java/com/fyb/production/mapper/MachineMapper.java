@@ -1,7 +1,7 @@
 package com.fyb.production.mapper;
 
-import com.fyb.production.entity.Machine;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.fyb.production.entity.Machine;
 
 /**
  * <p>

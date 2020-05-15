@@ -1,7 +1,9 @@
 package com.fyb.production.mapper;
 
-import com.fyb.production.entity.MachinePlan;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.fyb.production.entity.MachinePlan;
+
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -12,5 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-05-14
  */
 public interface MachinePlanMapper extends BaseMapper<MachinePlan> {
+    Boolean isFull(LocalDate productionDate);
 
 }

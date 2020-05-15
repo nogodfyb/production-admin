@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fyb.production.entity.MachinePlan;
 import com.fyb.production.entity.PlanItem;
 import com.fyb.production.entity.Productivity;
+import com.fyb.production.mapper.MachinePlanMapper;
 import com.fyb.production.mapper.PlanItemMapper;
 import com.fyb.production.service.IMachinePlanService;
 import com.fyb.production.service.IPlanItemService;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,10 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
 
     @Autowired
     private PlanItemMapper planItemMapper;
+
+    @Autowired
+    private MachinePlanMapper machinePlanMapper;
+
 
     @Autowired
     private IProductivityService productivityService;
@@ -73,6 +79,39 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
             }
             //当天安排了生产计划
             else {
+                //查询目前已经安排到哪一天了
+                QueryWrapper<MachinePlan> machinePlanQueryWrapper = new QueryWrapper<>();
+                machinePlanQueryWrapper.select("max(production_date) as productionDate");
+                Map<String, Object> map = machinePlanService.getMap(machinePlanQueryWrapper);
+                Date productionDate = (Date) map.get("productionDate");
+                //目前已经排到的日期
+                LocalDate localDate = productionDate.toLocalDate();
+                //再次查询该日期是否已排满
+                Boolean full = machinePlanMapper.isFull(localDate);
+                //如果排满了
+                if (full){
+                    //新起一天开始排
+                    LocalDate newProductionDate = localDate.plusDays(1);
+                    QueryWrapper<Productivity> queryWrapper2 = new QueryWrapper<>();
+                    queryWrapper2.select("sum(daily_production) as total").eq("product_code",item.getProductCode());
+                    Map<String, Object> map2 = productivityService.getMap(queryWrapper2);
+                    //单个产品36台机器一天的产能
+                    BigDecimal total = (BigDecimal) map2.get("total");
+                    //可以将如下个整天排满
+                    int wholeDays = item.getProductQuantity() / total.intValue();
+                    for (int i = 0; i <wholeDays ; i++) {
+                        machinePlanService.generateMachinePlanWholeDay(item.getPlanNo(),newProductionDate,item.getProductCode());
+                    }
+                    //还剩需要安排多少产量productQuantity-total*wholeDays 这些产量可以在一天排完
+                    int remainProduction=item.getProductQuantity()-total.intValue()*wholeDays;
+                    //剩余产量排满
+                    machinePlanService.generateMachinePlanRemainAfterWholeDays(item.getPlanNo(),item.getProductCode(),remainProduction);
+                }
+                //如果没排满
+                else {
+
+                }
+
 
             }
 
