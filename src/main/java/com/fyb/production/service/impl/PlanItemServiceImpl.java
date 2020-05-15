@@ -63,12 +63,16 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
                 BigDecimal total = (BigDecimal) map.get("total");
                 //可以将如下个整天排满
                 int wholeDays = item.getProductQuantity() / total.intValue();
-                machinePlanService.generateMachinePlanWholeDay(item.getPlanNo(),startTime,item.getProductCode());
+                for (int i = 0; i <wholeDays ; i++) {
+                    machinePlanService.generateMachinePlanWholeDay(item.getPlanNo(),startTime.plusDays(i),item.getProductCode());
+                }
                 //还剩需要安排多少产量productQuantity-total*wholeDays 这些产量可以在一天排完
                 int remainProduction=item.getProductQuantity()-total.intValue()*wholeDays;
-                //剩余产量排满，排一个机台remain-当个机台的日产量，产生新的remain直到排完
-
-            }else {
+                //剩余产量排满
+                machinePlanService.generateMachinePlanRemainAfterWholeDays(item.getPlanNo(),item.getProductCode(),remainProduction);
+            }
+            //当天安排了生产计划
+            else {
 
             }
 
