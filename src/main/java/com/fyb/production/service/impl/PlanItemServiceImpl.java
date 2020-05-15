@@ -53,7 +53,16 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
 
     @Override
     public void generateProductionPlans(List<Integer> planIdList){
+        //这里有一个隐患，虽然正常用户无法获取已排的生产计划id，但是会受到攻击，有空处理bug
         List<PlanItem> planItems = planItemMapper.selectBatchIds(planIdList);
+        //标记planItems已排
+        PlanItem planItem = new PlanItem();
+        planItem.setIsPlan(true);
+        for (Integer id:planIdList
+             ) {
+            planItem.setId(id);
+            planItemMapper.updateById(planItem);
+        }
         for (PlanItem item: planItems
              ) {
             LocalDate startTime = item.getStartTime();

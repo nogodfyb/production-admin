@@ -47,15 +47,18 @@ public class PlanItemController {
     @GetMapping("/list")
     public CommonResult<List<PlanItemVo>> selectList(){
         List<PlanItemVo> planItemVos = planItemService.selectAllPlanItemsVo();
-        if(planItemVos.size()==0){
+/*        if(planItemVos.size()==0){
             return CommonResult.failed();
-        }
+        }*/
         return CommonResult.success(planItemVos);
     }
 
     //接受生产计划idList，并生成机台计划
     @PostMapping("/generateProductionPlans")
     public CommonResult generateProductionPlans (@RequestBody List<Integer> idList)  {
+        if(0==idList.size()){
+            return CommonResult.failed();
+        }
         planItemService.generateProductionPlans(idList);
         return CommonResult.success(null);
     }
