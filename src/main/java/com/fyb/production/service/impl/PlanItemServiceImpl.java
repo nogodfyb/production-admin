@@ -57,12 +57,13 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
             //当天没有安排生产计划
             if(machinePlanList.size()==0){
                 QueryWrapper<Productivity> queryWrapper2 = new QueryWrapper<>();
-                queryWrapper.select("sum(daily_production) as total").eq("product_code",item.getProductId());
+                queryWrapper2.select("sum(daily_production) as total").eq("product_code",item.getProductCode());
                 Map<String, Object> map = productivityService.getMap(queryWrapper2);
                 //单个产品36台机器一天的产能
                 BigDecimal total = (BigDecimal) map.get("total");
                 //可以将如下个整天排满
                 int wholeDays = item.getProductQuantity() / total.intValue();
+                machinePlanService.generateMachinePlanWholeDay(item.getPlanNo(),startTime,item.getProductCode());
                 //还剩需要安排多少产量productQuantity-total*wholeDays 这些产量可以在一天排完
                 int remainProduction=item.getProductQuantity()-total.intValue()*wholeDays;
                 //剩余产量排满，排一个机台remain-当个机台的日产量，产生新的remain直到排完

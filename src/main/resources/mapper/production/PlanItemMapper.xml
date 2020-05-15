@@ -13,7 +13,7 @@ FROM
 	plan_item,
 	product
 WHERE
-	product. CODE = plan_item.product_id
+	product. CODE = plan_item.product_code
 AND plan_item.is_plan = 0
 ORDER BY
 	plan_item.id

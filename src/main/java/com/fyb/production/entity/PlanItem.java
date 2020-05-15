@@ -40,8 +40,8 @@ public class PlanItem implements Serializable {
     /**
      * 产品id
      */
-    @NotNull(message = "productId不能为空")
-    private Integer productId;
+    @NotNull(message = "productCode不能为空")
+    private String productCode;
 
     /**
      * 产品数量
