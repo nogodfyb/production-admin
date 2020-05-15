@@ -30,7 +30,7 @@ public class MenuController {
     @GetMapping("/list")
     public CommonResult<List<Menu>> listAll(){
         ArrayList<Menu> allMenuTree = menuService.getAllMenuTree(null);
-        if (allMenuTree!=null){
+        if (0!=allMenuTree.size()){
             return CommonResult.success(allMenuTree);
         }
         else {

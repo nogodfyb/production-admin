@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping("/users/{userId}")
     public  CommonResult<User> queryUserById(@PathVariable Integer userId){
         User user = userService.getById(userId);
-        if(user!=null){
+        if(null!=user){
             user.setPassword(null);
             return CommonResult.success(user);
         }
@@ -72,7 +72,7 @@ public class UserController {
         queryWrapper.eq("username",userParam.getUsername()).eq("password",
                 MD5Util.encode(userParam.getPassword()));
         User userInfo = userService.getOne(queryWrapper);
-        if(userInfo!=null){
+        if(null!=userInfo){
             userInfo.setPassword(null);
             session.setAttribute(Const.CURRENT_USER,userInfo);
             CommonResult<User> success = CommonResult.success(userInfo);

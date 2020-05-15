@@ -34,7 +34,7 @@ public class RightsController {
         QueryWrapper<Rights> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc("level");
         List<Rights> list = rightsService.list(queryWrapper);
-        if(list.size()!=0){
+        if(0!=list.size()){
             return CommonResult.success(list);
         }
         return CommonResult.failed();
@@ -47,7 +47,7 @@ public class RightsController {
         queryWrapper.orderByAsc("level");
         List<Object> objectList = rightsService.listObjs(queryWrapper);
         List<Integer> idList = (List<Integer>) (List<?>) objectList;
-        if(idList.size()!=0){
+        if(0!=idList.size()){
             ArrayList<Rights> treeList = rightsService.getAllRightsTree(idList);
             return CommonResult.success(treeList);
         }
