@@ -103,6 +103,7 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
                 remain=remain-shiftProduction;
             }else {
                 machinePlan.setScheduledProduction(remain);
+                machinePlanMapper.insert(machinePlan);
                 break;}
             //插入中班计划
             if((remain-shiftProduction)>=0){
@@ -110,7 +111,9 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
                 machinePlanMapper.insert(machinePlan);
                 remain=remain-shiftProduction;
             }else {
+                machinePlan.setShift(Const.Shift.ZHONG);
                 machinePlan.setScheduledProduction(remain);
+                machinePlanMapper.insert(machinePlan);
                 break;}
             //插入夜班计划
             if((remain-shiftProduction)>=0){
@@ -118,7 +121,9 @@ public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, Machi
                 machinePlanMapper.insert(machinePlan);
                 remain=remain-shiftProduction;
             }else {
+                machinePlan.setShift(Const.Shift.YE);
                 machinePlan.setScheduledProduction(remain);
+                machinePlanMapper.insert(machinePlan);
                 break;}
         }
     }
