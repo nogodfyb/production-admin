@@ -14,7 +14,7 @@ public class WebAppConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 设置拦截的路径、不拦截的路径、优先级等等
-        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**")
+        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/production/**")
                 .excludePathPatterns("/production/user/login");
     }
 
