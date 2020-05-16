@@ -1,7 +1,7 @@
 package com.fyb.production.service;
 
-import com.fyb.production.entity.PlanItem;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fyb.production.entity.PlanItem;
 import com.fyb.production.vo.PlanItemVo;
 
 import java.util.List;
@@ -19,4 +19,6 @@ public interface IPlanItemService extends IService<PlanItem> {
     List<PlanItemVo> selectAllPlanItemsVo();
 
     void generateProductionPlans(List<Integer> planIdList);
+
+    Boolean validateTimeSequence(List<Integer> idList);
 }

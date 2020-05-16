@@ -168,4 +168,18 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
         }
     }
 
+    @Override
+    public Boolean validateTimeSequence(List<Integer> idList){
+        List<PlanItem> planItems = planItemMapper.selectBatchIds(idList);
+        for (int i = 0; i <planItems.size()-1 ; i++) {
+             LocalDate beforeTime = planItems.get(i).getStartTime();
+             LocalDate afterTime = planItems.get(i+1).getStartTime();
+            System.out.println();
+            if(afterTime.compareTo(beforeTime)<0){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

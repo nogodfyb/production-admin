@@ -59,9 +59,12 @@ public class PlanItemController {
         if(0==idList.size()){
             return CommonResult.failed();
         }
+        Boolean validate = planItemService.validateTimeSequence(idList);
+        if(!validate){
+            return CommonResult.failed();
+        }
         planItemService.generateProductionPlans(idList);
         return CommonResult.success(null);
     }
-
 
 }
