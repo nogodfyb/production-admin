@@ -46,8 +46,8 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> i
     private IMachinePlanService machinePlanService;
 
     @Override
-    public List<PlanItemVo> selectAllPlanItemsVo(){
-        List<PlanItemVo> planItemVos = planItemMapper.selectAll();
+    public List<PlanItemVo> selectAllPlanItemsVo(Boolean isPlan){
+        List<PlanItemVo> planItemVos = planItemMapper.selectAll(isPlan);
         return planItemVos;
     }
 

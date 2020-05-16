@@ -14,7 +14,7 @@ FROM
 	product
 WHERE
 	product. CODE = plan_item.product_code
-AND plan_item.is_plan = 0
+AND plan_item.is_plan = #{isPlan}
 ORDER BY
 	plan_item.id
     </select>

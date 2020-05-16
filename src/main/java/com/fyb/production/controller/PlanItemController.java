@@ -43,10 +43,20 @@ public class PlanItemController {
         return CommonResult.failed();
     }
 
-    //查询所有
+    //查询所有未分配
     @GetMapping("/list")
     public CommonResult<List<PlanItemVo>> selectList(){
-        List<PlanItemVo> planItemVos = planItemService.selectAllPlanItemsVo();
+        List<PlanItemVo> planItemVos = planItemService.selectAllPlanItemsVo(false);
+/*        if(planItemVos.size()==0){
+            return CommonResult.failed();
+        }*/
+        return CommonResult.success(planItemVos);
+    }
+
+    //查询所有已分配
+    @GetMapping("/list/assign")
+    public CommonResult<List<PlanItemVo>> selectAssignList(){
+        List<PlanItemVo> planItemVos = planItemService.selectAllPlanItemsVo(true);
 /*        if(planItemVos.size()==0){
             return CommonResult.failed();
         }*/

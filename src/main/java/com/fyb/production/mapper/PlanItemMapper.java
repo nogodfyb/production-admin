@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface PlanItemMapper extends BaseMapper<PlanItem> {
 
-    List<PlanItemVo> selectAll();
+    List<PlanItemVo> selectAll(Boolean isPlan);
 
 }
