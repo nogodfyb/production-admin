@@ -14,6 +14,7 @@ import com.fyb.production.service.IProductivityService;
 import com.fyb.production.vo.PlanItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -30,6 +31,7 @@ import java.util.Map;
  * @since 2020-05-13
  */
 @Service
+@Transactional
 public class PlanItemServiceImpl extends ServiceImpl<PlanItemMapper, PlanItem> implements IPlanItemService {
 
     @Autowired

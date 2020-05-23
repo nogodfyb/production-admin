@@ -11,6 +11,7 @@ import com.fyb.production.service.IMachinePlanService;
 import com.fyb.production.service.IProductivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -27,6 +28,7 @@ import java.util.Map;
  * @since 2020-05-14
  */
 @Service
+@Transactional
 public class MachinePlanServiceImpl extends ServiceImpl<MachinePlanMapper, MachinePlan> implements IMachinePlanService {
 
     @Autowired
